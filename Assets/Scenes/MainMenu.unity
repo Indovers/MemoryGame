@@ -2225,5 +2225,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Start Button
       objectReference: {fileID: 0}
+    - target: {fileID: 4688908507813235315, guid: 0c9f86b24f2fbe04097aa4b62339edce, type: 3}
+      propertyPath: easeType
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688908507813235315, guid: 0c9f86b24f2fbe04097aa4b62339edce, type: 3}
+      propertyPath: easeScaleFactor
+      value: 1.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c9f86b24f2fbe04097aa4b62339edce, type: 3}
