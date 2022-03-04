@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 [RequireComponent(typeof(GridLayoutGroup))]
 public class CardGrid : MonoBehaviour
@@ -10,6 +11,8 @@ public class CardGrid : MonoBehaviour
 
     private RectTransform _rectTransform;
     private GridLayoutGroup _gridLayoutGroup;
+
+    private CardMatchChecker _cardMatchChecker;
     
     private int _height;
     private int _width;
@@ -19,6 +22,11 @@ public class CardGrid : MonoBehaviour
     {
         _rectTransform = GetComponent<RectTransform>();
         _gridLayoutGroup = GetComponent<GridLayoutGroup>();
+    }
+
+    [Inject] private void Construct(CardMatchChecker cardMatchChecker)
+    {
+        _cardMatchChecker = cardMatchChecker;
     }
 
     private void OnEnable()
@@ -54,7 +62,7 @@ public class CardGrid : MonoBehaviour
         for (var i = 0; i < _totalCells; i++)
         {
             var card = Instantiate(cardPrefab, transform).GetComponent<Card>();
-            card.Init(cardSprites[i/2]);
+            card.Init(cardSprites[i/2], i/2, _cardMatchChecker);
 
             _gridLayoutGroup.cellSize = new Vector2(gridSize, gridSize);
             _gridLayoutGroup.spacing = new Vector2(gridOffset, gridOffset);
