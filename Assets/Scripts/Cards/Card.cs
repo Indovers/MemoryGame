@@ -66,5 +66,7 @@ public class Card : MonoBehaviour
     public void MarkAsMatched()
     {
         _isMatched = true;
+
+        transform.DOPunchScale(Vector3.one * .2f, .3f);
     }
 }

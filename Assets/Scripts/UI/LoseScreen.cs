@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ using UnityEngine;
 public class LoseScreen : MonoBehaviour
 {
     [SerializeField] private float loseScreenFadeTime;
-    
+
     private CanvasGroup _loseCanvasGroup;
 
     private void Awake()

@@ -4,6 +4,7 @@ using UnityEngine;
 public class WinScreen : MonoBehaviour
 {
     [SerializeField] private float winScreenFadeTime;
+    [SerializeField] private ParticleSystem winParticles;
     
     private CanvasGroup _winCanvasGroup;
 
@@ -28,6 +29,8 @@ public class WinScreen : MonoBehaviour
     {
         _winCanvasGroup.blocksRaycasts = true;
         _winCanvasGroup.DOFade(1, winScreenFadeTime);
+        
+        winParticles.Play();
     }
     
     private void HideWinScreen(GameSettings gameSettings)

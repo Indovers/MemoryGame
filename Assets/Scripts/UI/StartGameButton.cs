@@ -14,6 +14,11 @@ public class StartGameButton : MonoBehaviour
         _startGameButton = GetComponent<Button>();
     }
 
+    private void Start()
+    {
+        _startGameButton.onClick.AddListener(StartGame);
+    }
+
     private void OnEnable()
     {
         PlayerNameInputField.OnPlayerNameChanged += ValidateButton;
