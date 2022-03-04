@@ -5,25 +5,35 @@ using UnityEngine;
 public class GameTimer : MonoBehaviour
 {
     public static Action<int> OnTimerUpdated;
-    
+
     private int _timeLeft;
+
     private void OnEnable()
     {
-        GameState.OnGameStarted += StartNewGameTimer;
+        GameState.OnGameStarted += StartGameTimer;
+        GameState.OnGameSucceed += StopGameTimer;
     }
 
     private void OnDisable()
     {
-        GameState.OnGameStarted -= StartNewGameTimer;
+        GameState.OnGameStarted -= StartGameTimer;
+        GameState.OnGameSucceed -= StopGameTimer;
     }
 
-    private void StartNewGameTimer(GameSettings gameSettings)
+    private void StartGameTimer(GameSettings gameSettings)
     {
-        _timeLeft = gameSettings.difficultyLevel * 5;
+        StopGameTimer();
         
+        _timeLeft = gameSettings.difficultyLevel * 5;
+
         OnTimerUpdated?.Invoke(_timeLeft);
 
         StartCoroutine(nameof(TimerCoroutine));
+    }
+
+    private void StopGameTimer()
+    {
+        StopCoroutine(nameof(TimerCoroutine));
     }
 
     private IEnumerator TimerCoroutine()

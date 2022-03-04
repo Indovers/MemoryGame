@@ -41,6 +41,7 @@ public class CardGrid : MonoBehaviour
 
     private void Init(GameSettings gameSettings)
     {
+        ClearGrid();
         ShuffleCardSprites();
         CalculateGridSize(gameSettings.difficultyLevel * 2);
         SpawnGridCards();
@@ -66,6 +67,14 @@ public class CardGrid : MonoBehaviour
 
             _gridLayoutGroup.cellSize = new Vector2(gridSize, gridSize);
             _gridLayoutGroup.spacing = new Vector2(gridOffset, gridOffset);
+        }
+    }
+
+    private void ClearGrid()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 

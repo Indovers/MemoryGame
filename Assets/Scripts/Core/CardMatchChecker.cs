@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class CardMatchChecker : MonoBehaviour
 {
@@ -9,7 +10,13 @@ public class CardMatchChecker : MonoBehaviour
     public static Action OnCardsHidden;
 
     private List<Card> _selectedCards = new List<Card>();
+    private GameState _gameState;
     public int FlippedCardsCount { get; private set; }
+
+    [Inject] private void Construct(GameState gameState)
+    {
+        _gameState = gameState;
+    }
 
     private void OnEnable()
     {
@@ -62,6 +69,8 @@ public class CardMatchChecker : MonoBehaviour
         {
             card.MarkAsMatched();
         }
+        
+        _gameState.PairMatched();
         
         ClearSelectedCards();
     }

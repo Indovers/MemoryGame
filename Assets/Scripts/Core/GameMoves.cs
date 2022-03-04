@@ -10,11 +10,20 @@ public class GameMoves : MonoBehaviour
     private void OnEnable()
     {
         CardMatchChecker.OnCardStartFlipping += UpdateTotalMoves;
+        GameState.OnGameStarted += ClearGameMoves;
     }
 
     private void OnDisable()
     {
         CardMatchChecker.OnCardStartFlipping -= UpdateTotalMoves;
+        GameState.OnGameStarted -= ClearGameMoves;
+    }
+
+    private void ClearGameMoves(GameSettings gameSettings)
+    {
+        _totalMoves = 0;
+        
+        OnMovesUpdated?.Invoke(_totalMoves);
     }
 
     private void UpdateTotalMoves()
