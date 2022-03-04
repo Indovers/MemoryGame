@@ -5,8 +5,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class StartGameButton : MonoBehaviour
 {
-    private const string GameSceneName = "GameScene";
-    
     private Button _startGameButton;
 
     private void Awake()
@@ -36,6 +34,6 @@ public class StartGameButton : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(GameSceneName);
+        SceneManager.LoadScene(Constants.GameSceneName);
     }
 }
